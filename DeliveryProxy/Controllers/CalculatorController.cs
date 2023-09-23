@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DeliveryProxy.Calculator;
+using MapsterMapper;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DeliveryProxy.Controllers;
 
@@ -7,5 +9,13 @@ namespace DeliveryProxy.Controllers;
 public class CalculatorController : Controller
 
 {
+    private readonly CalculatorService _calculatorService;
 
+    [HttpGet("shipment/price")]
+    public async Task<IActionResult> GetShipmentPrice(ShipmentDto shipment)
+    {
+
+        var request =
+        var calc = _calculatorService.GetShipmentPriceAsync()
+    }
 }
