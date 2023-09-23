@@ -1,3 +1,4 @@
+using DeliveryProxy.Auth;
 using DeliveryProxy.Calculator;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,11 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddHttpClient<CalculatorService>(
-    client =>
-    {
-        client.BaseAddress = new Uri("https://api.edu.cdek.ru/v2/");
-    });
+builder.Services.AddSingleton<IHttpClientFactory, AuthorizedHttpClientFactory>();
 
 var app = builder.Build();
 
