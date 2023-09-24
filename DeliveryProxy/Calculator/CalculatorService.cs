@@ -10,9 +10,9 @@ public class CalculatorService
 
     private readonly HttpClient _httpClient;
 
-    public CalculatorService(HttpClient httpClient)
+    public CalculatorService(IHttpClientFactory factory)
     {
-        _httpClient = httpClient;
+        _httpClient = factory.CreateClient();
     }
 
     public async Task<CdekCalcResponse> GetShipmentPriceAsync(CdekCalcRequest request, CancellationToken cancellation)

@@ -27,5 +27,11 @@ public static class MappingProfile
                         (int)Math.Ceiling(src.SizeMmX / 10f), 
                         (int)Math.Ceiling(src.SizeMmX / 10f))
                 });
+
+        TypeAdapterConfig<CdekCalcResponse, PriceDto>
+            .NewConfig()
+            .Map(
+                dest => dest.Price,
+                src => src.TotalPrice);
     }
 }
