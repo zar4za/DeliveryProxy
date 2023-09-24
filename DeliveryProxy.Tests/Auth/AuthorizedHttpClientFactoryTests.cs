@@ -10,7 +10,11 @@ public class AuthorizedHttpClientFactoryTests
     public async Task CreateFactory_CorrectCreds_ShouldAuthorizeApi()
     {
         // sample credentials no need to worry about safety
-        var storedConfig = new CdekAuthOptions("EMscd6r9JnFiQ3bLoyjJY6eM78JrJceI", "PjLZkKBHEiLK3YsjtNrt3TGNG0ahs3kG");
+        var storedConfig = new CdekAuthOptions
+        {
+            ClientId = "EMscd6r9JnFiQ3bLoyjJY6eM78JrJceI",
+            ClientSecret = "PjLZkKBHEiLK3YsjtNrt3TGNG0ahs3kG"
+        };
         var options = Options.Create(storedConfig);
         var factory = new AuthorizedHttpClientFactory(options);
 
