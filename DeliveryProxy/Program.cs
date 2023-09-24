@@ -1,5 +1,5 @@
+using DeliveryProxy;
 using DeliveryProxy.Auth;
-using DeliveryProxy.Calculator;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +17,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseAuthorization();
-
 app.MapControllers();
+
+MappingProfile.CreateMappers();
 
 app.Run();
