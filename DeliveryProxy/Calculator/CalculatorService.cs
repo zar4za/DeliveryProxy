@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Text.Json.Nodes;
 using DeliveryProxy.Calculator.Cdek;
 using DeliveryProxy.Exceptions;
 
@@ -28,6 +29,7 @@ public class CalculatorService
         if (response.StatusCode != HttpStatusCode.BadRequest)
             throw new ExternalApiException($"{_httpClient.BaseAddress}/{CalculatorEndpoint}");
 
-        throw new CalculationBadRequestException();
+        var error = await response.Content.ReadFromJsonAsync<JsonObject>(cancellationToken: cancellation);
+        throw new CalculationBadRequestException(error?["errors"]?[0]?["message"]?.GetValue<string>() ?? string.Empty);
     }
 }
